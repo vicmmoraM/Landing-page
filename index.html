@@ -59,7 +59,8 @@
   <main class="bg-slate-50">
     <div id="container-01" class="mx-auto px-4 py-20 text-center">
       <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">Tu presencia digital comienza aquí</h1>
-      <p class="mt-6 text-lg leading-relaxed text-gray-600 max-w-2xl mx-auto text-center">Creamos experencias web atractivas y rápidas con tailwindcss
+      <p class="mt-6 text-lg leading-relaxed text-gray-600 max-w-2xl mx-auto text-center">Creamos experencias web
+        atractivas y rápidas con tailwindcss
         CSS 4.1. Dale ida a tus ideas con un diseño moderno y responsivo</p>
       <div id="container-02" class="mt-8 flex justify-center gap-4">
         <button id="start" class="inline-block px-6 py-3 text-white bg-blue-600 rounded-lg">Comenzar</button>
@@ -135,6 +136,32 @@
       </div>
     </div>
   </section>
+  <section class="flex flex-col items-center justify-center bg-white py-8">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Vota por tu producto preferido</h2>
+
+      <div class="mb-6">
+        <form id="form_voting" class="relative flex items-center">
+          <select id="select_product"
+            class="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <option value="" disabled selected>Seleccione un producto</option>
+            <option value="product1">Producto 1</option>
+            <option value="product2">Producto 2</option>
+            <option value="product3">Producto 3</option>
+          </select>
+          <button
+            class="ml-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            VOTAR
+          </button>
+        </form>
+      </div>
+
+      <div id="results" class="border border-gray-300 rounded-lg h-52 w-full p-2 bg-gray-50">
+        <p class="text-gray-500 text-center mt-16">Resultado de la votación</p>
+      </div>
+    </div>
+  </section>
+  
   <div id="toast-interactive"
     class="hidden fixed right-5 bottom-5 z-50 flex items-center w-full max-w-xs p-4 space-x-4 text-gray-500 bg-white divide-x divide-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:divide-gray-700 dark:bg-gray-800"
     role="alert">
@@ -173,7 +200,29 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
   <script type="module" src="./src/js/file01.js"></script>
- 
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyC75ohYK-miJEHnVRQ2KBtLY1mIbmAA4S8",
+      authDomain: "landing-1b870.firebaseapp.com",
+      projectId: "landing-1b870",
+      storageBucket: "landing-1b870.firebasestorage.app",
+      messagingSenderId: "167186169111",
+      appId: "1:167186169111:web:ccf00dc6ea42a770748b52",
+      measurementId: "G-HWJGDWDNQC"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
 </body>
 
 

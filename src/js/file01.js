@@ -1,5 +1,12 @@
 "use strict";
 import { fetchProducts } from "./functions.js";
+
+/**
+ * Muestra el toast interactivo (lo hace visible en pantallas md+).
+ * Generado con ayuda de cliente IAG (documentación automática).
+ *
+ * @returns {void}
+ */
 const showToast = () => {
     const toast = document.getElementById("toast-interactive");
     if (toast) {
@@ -7,6 +14,11 @@ const showToast = () => {
     }
 };
 
+/**
+ * Adjunta el evento click al botón demo para abrir un vídeo en nueva pestaña.
+ *
+ * @returns {void}
+ */
 const showVideo = () => {
     const demo = document.getElementById("demo");
     if (demo) {
@@ -16,7 +28,15 @@ const showVideo = () => {
     }
 };
 
-// renderProducts: obtiene productos y renderiza los primeros 6 en #products-container
+/**
+ * Obtiene productos remotos y renderiza los primeros 6 en el contenedor
+ * con id `products-container`.
+ *
+ * Llama a `fetchProducts(url)` y espera un objeto con la forma:
+ * { success: boolean, body: Array, message?: string }
+ *
+ * @returns {Promise<void>} Promise que se resuelve cuando termina el renderizado.
+ */
 const renderProducts = () => {
     return fetchProducts('https://data-dawm.github.io/datum/reseller/products.json')
         .then(result => {
@@ -73,9 +93,11 @@ const renderProducts = () => {
         .catch(err => console.error('Error fetching products:', err));
 };
 
+
 // ejecuta funciones al cargar el módulo
 (async () => {
     showToast();
     showVideo();
     await renderProducts();
 })();
+
