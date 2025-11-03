@@ -141,7 +141,7 @@
       <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Vota por tu producto preferido</h2>
 
       <div class="mb-6">
-        <form id="form_voting" class="relative flex items-center">
+        <form id="form_voting" class="relative flex flex-col md:flex-row items-center">
           <select id="select_product"
             class="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
             <option value="" disabled selected>Seleccione un producto</option>
@@ -149,8 +149,8 @@
             <option value="product2">Producto 2</option>
             <option value="product3">Producto 3</option>
           </select>
-          <button
-            class="ml-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+          <button id="voteBtn"
+            class="mt-3 md:mt-0 md:ml-4 w-full md:w-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
             VOTAR
           </button>
         </form>
@@ -163,7 +163,7 @@
   </section>
   
   <div id="toast-interactive"
-    class="hidden fixed right-5 bottom-5 z-50 flex items-center w-full max-w-xs p-4 space-x-4 text-gray-500 bg-white divide-x divide-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:divide-gray-700 dark:bg-gray-800"
+    class="fixed right-5 bottom-5 z-50 flex items-center w-full max-w-xs p-4 space-x-4 text-gray-500 bg-white divide-x divide-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:divide-gray-700 dark:bg-gray-800"
     role="alert">
     <div class="flex">
 
@@ -187,19 +187,36 @@
 
       <!-- Close button -->
       <button type="button"
-        class="ml-auto -mx-1.5 -my-1.5 p-1.5 inline-flex items-center justify-center w-8 h-8 text-gray-400 bg-white rounded-lg hover:text-gray-900 hover:bg-gray-100 focus:ring-2 focus:ring-gray-300 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+        class="ml-auto -mx-1.5 -my-1.5 p-1.5 inline-flex items-center justify-center w-8 h-8 text-gray-700 bg-white rounded-lg hover:text-gray-900 hover:bg-gray-100 focus:ring-2 focus:ring-gray-300 dark:text-gray-200 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
         data-dismiss-target="#toast-interactive" aria-label="Close">
         <span class="sr-only">Close</span>
-        <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" aria-hidden="true">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-        </svg>
+        <!-- Use a visible unicode × character with clear color for contrast -->
+        <span aria-hidden="true" class="text-lg font-semibold text-gray-700 dark:text-gray-200 leading-none">×</span>
       </button>
     </div>
   </div>
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
   <script type="module" src="./src/js/file01.js"></script>
+  <script>
+    // Habilitar/mostrar el botón VOTAR cuando se seleccione un producto
+    document.addEventListener('DOMContentLoaded', () => {
+      const select = document.getElementById('select_product');
+      const voteBtn = document.getElementById('voteBtn');
+      if (!select || !voteBtn) return;
+
+      const update = () => {
+        // Keep the button visible and enabled by default.
+        // If you want strict validation, we can re-enable conditional disabling later.
+        voteBtn.disabled = false;
+        voteBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+      };
+
+      // inicializar y escuchar cambios
+      update();
+      select.addEventListener('change', update);
+    });
+  </script>
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";

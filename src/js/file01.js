@@ -10,7 +10,8 @@ import { fetchProducts } from "./functions.js";
 const showToast = () => {
     const toast = document.getElementById("toast-interactive");
     if (toast) {
-        toast.classList.add("md:block");
+        // Make the toast visible on all screen sizes when requested
+        toast.classList.add("block");
     }
 };
 
